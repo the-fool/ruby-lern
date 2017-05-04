@@ -20,4 +20,19 @@ class Walrus
   def _eat(x)
     puts "I eat the #{x}!"
   end
+
+  def cook
+    if @food.nil?
+      puts "..."
+    elsif @food.respond_to?("join")
+      self._cook(@food.join(", "))
+    else
+      self._cook(@food)
+    end
+
+  end
+
+  def _cook(x)
+    puts "I will eat #{x}.  After cooking it."
+  end
 end
