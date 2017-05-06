@@ -30,6 +30,26 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # Your goal is to write the score method.
 
 def score(dice)
+  score = 0
+  (1..6).map do |x|
+    xs = dice.select { |d| d == x }
+    if x == 1
+      if xs.size >= 3
+        score += 1000
+        xs = xs.drop 3
+      end
+      score += 100 * xs.size
+    elsif x == 5
+      if xs.size >= 3
+        score += 500
+        xs = xs.drop 3
+      end
+      score += 50 * xs.size
+    elsif xs.size >= 3
+      score += x * 100
+    end
+  end
+  score
   # You need to write this method
 end
 
